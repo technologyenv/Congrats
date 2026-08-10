@@ -179,38 +179,70 @@
             font-size: 0.9rem;
         }
 
-        /* 4. تصميم الظرف بالصور التفاعلية */
+        /* 4. تصميم وحركة الظرف الـ 3D التفاعلي */
         .interactive-envelope-wrapper {
             position: relative;
             width: 100%;
-            max-width: 550px;
+            max-width: 500px;
+            height: 420px;
             margin: 0 auto;
             cursor: pointer;
-            perspective: 1000px;
+            perspective: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .env-img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            display: none;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: absolute;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            /* ظلال 3D واقعية جداً بدون خلفية */
+            filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.7));
         }
 
+        /* الحركة الهادئة التفاعلية (Floating) */
+        .floating-animation {
+            animation: float3D 4s ease-in-out infinite;
+        }
+
+        @keyframes float3D {
+            0% {
+                transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+            }
+            50% {
+                transform: translateY(-12px) rotateX(4deg) rotateY(-3deg);
+                filter: drop-shadow(0px 30px 40px rgba(244, 225, 160, 0.25));
+            }
+            100% {
+                transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+            }
+        }
+
+        /* الحالة النشطة للظرف/الرسالة */
         .env-img.active {
-            display: block;
-            animation: fadeIn 0.4s ease forwards;
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        .env-img.letter-popup.active {
-            transform: scale(1.05);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+        /* خروج الورقة وانبثاقها (Pop-out Animation) */
+        .env-img.pop-out.active {
+            animation: popOutLetter 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, float3D 4s ease-in-out infinite 0.7s;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+        @keyframes popOutLetter {
+            0% {
+                opacity: 0;
+                transform: scale(0.6) translateY(50px) rotateX(-20deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.1) translateY(0px) rotateX(0deg);
+            }
         }
 
         /* 5. زرار الاحتفال */
@@ -248,6 +280,7 @@
             h1 { font-size: 2.5rem; }
             .subtitle { font-size: 1.1rem; }
             .card { width: 100%; }
+            .interactive-envelope-wrapper { height: 320px; }
         }
     </style>
 </head>
@@ -294,15 +327,20 @@
             </div>
         </div>
 
-        <!-- 3. قسم الظرف والرسالة الخاصة -->
+        <!-- 3. قسم الظرف والرسالة الخاصة 3D -->
         <div class="section">
             <h2 class="section-title">رسالة خاصة ✉️</h2>
             <p style="color: #a8b2d1; margin-bottom: 25px;">اضغط على الظرف عشان تفتحه 😉✨</p>
 
             <div class="interactive-envelope-wrapper" id="envelopeWrapper" onclick="stepEnvelope()">
-                <img src="pic1.png" id="envStep1" class="env-img active" alt="الظرف مقفول">
-                <img src="pic2.png" id="envStep2" class="env-img" alt="الظرف مفتوح">
-                <img src="pic3.png" id="envStep3" class="env-img letter-popup" alt="الرسالة">
+                <!-- الخطوة 1: الظرف المقفول 3D طافي -->
+                <img src="pic1.png" id="envStep1" class="env-img active floating-animation" alt="الظرف مقفول">
+                
+                <!-- الخطوة 2: الظرف مفتوح والورقة طالعة منه -->
+                <img src="pic2.png" id="envStep2" class="env-img floating-animation" alt="الظرف مفتوح">
+                
+                <!-- الخطوة 3: الرسالة بتنط لوحدها وتكبر -->
+                <img src="pic3.png" id="envStep3" class="env-img pop-out" alt="الرسالة">
             </div>
 
             <!-- زرار الاحتفال -->
@@ -334,7 +372,7 @@
             starsContainer.appendChild(star);
         }
 
-        // حركة التنقل بين صور الظرف والخطاب
+        // حركة التنقل والدوران التفاعلي
         let currentStep = 1;
 
         function stepEnvelope() {
@@ -343,17 +381,19 @@
             const img3 = document.getElementById('envStep3');
 
             if (currentStep === 1) {
+                // الضغطة الأولى: فتح الظرف وبيان الورقة
                 img1.classList.remove('active');
                 img2.classList.add('active');
                 currentStep = 2;
                 
                 confetti({
-                    particleCount: 40,
-                    spread: 60,
+                    particleCount: 35,
+                    spread: 50,
                     origin: { y: 0.6 }
                 });
 
             } else if (currentStep === 2) {
+                // الضغطة الثانية: تنط الورقة وتبان لوحدها واضحة
                 img2.classList.remove('active');
                 img3.classList.add('active');
                 currentStep = 3;
@@ -365,6 +405,12 @@
                         origin: { y: 0.6 }
                     });
                 }, 150);
+
+            } else if (currentStep === 3) {
+                // الضغطة الثالثة: إرجاع الظرف لحالته الأولى المقفولة
+                img3.classList.remove('active');
+                img1.classList.add('active');
+                currentStep = 1;
             }
         }
 
