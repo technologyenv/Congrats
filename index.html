@@ -155,11 +155,39 @@
             border-radius: 20px;
             width: 280px;
             border: 1px solid rgba(244, 225, 160, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card .icon { font-size: 3rem; margin-bottom: 10px; }
         .card h3 { color: #fff; margin-bottom: 10px; }
         .card p { color: #a8b2d1; font-size: 0.95rem; line-height: 1.6; }
+
+        /* شريط تحميل الكارت الأول */
+        .card-progress-wrapper {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            height: 12px;
+            border-radius: 10px;
+            margin: 12px 0 8px 0;
+            overflow: hidden;
+            border: 1px solid rgba(244, 225, 160, 0.3);
+        }
+
+        .card-progress-bar {
+            height: 100%;
+            width: 40%;
+            background: linear-gradient(90deg, #f4e1a0, #d4af37);
+            border-radius: 10px;
+        }
+
+        .card-progress-text {
+            font-size: 0.85rem;
+            color: #f4e1a0;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
 
         /* الجواب والرسالة */
         .interactive-envelope-wrapper {
@@ -529,21 +557,36 @@
         <div class="section">
             <h2 class="section-title">شفرة النجاح ⚙️</h2>
             <div class="cards-container">
+                
+                <!-- كارت المجهود الشخصي المعدل -->
                 <div class="card">
-                    <div class="icon">🤖</div>
-                    <h3>منقذ الأزمات (AI)</h3>
+                    <div>
+                        <div class="icon">🦾</div>
+                        <h3>مجهود شخصي 😂🤭</h3>
+                        <div class="card-progress-wrapper">
+                            <div class="card-progress-bar"></div>
+                        </div>
+                        <div class="card-progress-text">تحميل 40%</div>
+                    </div>
+                    <p>دي النسبة المتبقية من التعب والكفاح البشري العادي .. بس تحتسب ليك برضو يا بطل</p>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="icon">🤖</div>
+                        <h3>منقذ الأزمات (AI)</h3>
+                    </div>
                     <p>الداعم الرسمي والسند الموثوق في كل التاسكات والامتحانات! 😂😉</p>
                 </div>
+
                 <div class="card">
-                    <div class="icon">🦾</div>
-                    <h3>مجهود شخصي 😂</h3>
-                    <p>النسبة المتبقية من العرق والكفاح البشري العادي، مجهود يُحسب ليك يا بطل!</p>
-                </div>
-                <div class="card">
-                    <div class="icon">🧳</div>
-                    <h3>تعب وسفر وشغل</h3>
+                    <div>
+                        <div class="icon">🧳</div>
+                        <h3>تعب وسفر وشغل</h3>
+                    </div>
                     <p>التوفيق الصعب بين الشغل والتعب.. التعب الحقيقي اللي يستاهل كل تقدير.</p>
                 </div>
+
             </div>
         </div>
 
@@ -645,7 +688,6 @@
                 <p class="duck-game-subtitle">اصطاد القلوب النازلة عشان تملى الشنطة بسرعة!</p>
 
                 <div class="bag-img-wrapper">
-                    <!-- تعديل: Pho7 هي الفاضية البداية -->
                     <img src="Pho7.png" id="batootBagImg" class="bag-img" alt="شنطة بطوط">
                 </div>
 
@@ -755,13 +797,13 @@
 
         // ================= لعبة مطر القلوب 💖 =================
         let heartScore = 0;
-        const targetScore = 50; // تم التقليل لـ 50
+        const targetScore = 50;
         let spawnerInterval = null;
         const catchArea = document.getElementById('catchArea');
 
         function startHeartSpawner() {
             if (spawnerInterval) clearInterval(spawnerInterval);
-            spawnerInterval = setInterval(spawnFallingHeart, 500); // سرعة نزول المطر
+            spawnerInterval = setInterval(spawnFallingHeart, 500);
         }
 
         function stopHeartSpawner() {
@@ -774,17 +816,14 @@
             const heart = document.createElement('div');
             heart.classList.add('falling-heart');
             
-            // مطر القلوب بالكامل
             const hearts = ['💖', '💕', '💗', '💓', '❤️'];
             heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
 
-            // تحديد موقع وسرعة عشوائية لكل قلب
             heart.style.left = Math.random() * 88 + '%';
             heart.style.animationDuration = (Math.random() * 2 + 1.8) + 's';
 
             catchArea.appendChild(heart);
 
-            // حذف القلب بعد انتهاء أنيميشن الهبوط
             setTimeout(() => {
                 if (heart.parentNode === catchArea) {
                     heart.remove();
@@ -811,7 +850,6 @@
             stopHeartSpawner();
             catchArea.innerHTML = '<div style="margin-top:100px; font-weight:bold; color:#ff4757; font-size:1.3rem;">اكتملت الشنطة بالحب بنجاح! 🎉🪿</div>';
             
-            // تعديل: تتحول لـ Pho6 (الشنطة المليانة)
             document.getElementById('batootBagImg').src = 'Pho6.png';
             document.getElementById('bagStatusMsg').innerText = 'مبروك! شنطة بطوط اتملت بحب نونو بالكامل! 🥳💖';
 
