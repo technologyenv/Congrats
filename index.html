@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nono's Success Journey | Class of 2026 🎓</title>
     
-    <!-- استدعاء الفونتات -->
+    <!-- استدعاء الفونتات الفخمة -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
@@ -25,7 +25,7 @@
             position: relative;
         }
 
-        /* خلفية النجوم */
+        /* خلفية النجوم المتلألئة */
         .stars-bg {
             position: fixed;
             top: 0;
@@ -56,7 +56,7 @@
             padding: 20px;
         }
 
-        /* 1. Hero */
+        /* 1. قسم الواجهة الرئيسية (Hero) */
         .hero {
             min-height: 75vh;
             display: flex;
@@ -95,7 +95,7 @@
             font-weight: 400;
         }
 
-        /* 2. Sections */
+        /* 2. الأقسام العامة */
         .section {
             padding: 40px 0;
             text-align: center;
@@ -121,7 +121,7 @@
             border-radius: 2px;
         }
 
-        /* 3. Cards */
+        /* 3. كروت شفرة النجاح */
         .cards-container {
             display: flex;
             gap: 25px;
@@ -179,7 +179,7 @@
             font-size: 0.9rem;
         }
 
-        /* 4. تصميم وحركة الظرف الـ 3D التفاعلي */
+        /* 4. تصميم وحركة الظرف والرسالة الـ 3D التفاعلية */
         .interactive-envelope-wrapper {
             position: relative;
             width: 100%;
@@ -201,7 +201,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.4s ease;
-            /* ظلال 3D واقعية جداً بدون خلفية */
+            /* ظلال 3D ناعمة جداً مخصصة للقصاصات الشفافة */
             filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.7));
         }
 
@@ -216,6 +216,7 @@
             }
             50% {
                 transform: translateY(-12px) rotateX(4deg) rotateY(-3deg);
+                /* تأثير إضاءة ذهبية خفيفة أثناء الطفو */
                 filter: drop-shadow(0px 30px 40px rgba(244, 225, 160, 0.25));
             }
             100% {
@@ -223,13 +224,13 @@
             }
         }
 
-        /* الحالة النشطة للظرف/الرسالة */
+        /* الحالة النشطة للصورة (الظرف أو الرسالة) */
         .env-img.active {
             opacity: 1;
             pointer-events: auto;
         }
 
-        /* خروج الورقة وانبثاقها (Pop-out Animation) */
+        /* أنيميشن خروج الورقة وانبثاقها (Pop-out Animation) */
         .env-img.pop-out.active {
             animation: popOutLetter 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, float3D 4s ease-in-out infinite 0.7s;
         }
@@ -276,6 +277,7 @@
             z-index: 999;
         }
 
+        /* توافق الأجهزة (Responsive) */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .subtitle { font-size: 1.1rem; }
@@ -327,36 +329,38 @@
             </div>
         </div>
 
-        <!-- 3. قسم الظرف والرسالة الخاصة 3D -->
+        <!-- 3. قسم الظرف والرسالة الخاصة 3D التفاعلي -->
         <div class="section">
             <h2 class="section-title">رسالة خاصة ✉️</h2>
             <p style="color: #a8b2d1; margin-bottom: 25px;">اضغط على الظرف عشان تفتحه 😉✨</p>
 
             <div class="interactive-envelope-wrapper" id="envelopeWrapper" onclick="stepEnvelope()">
-                <!-- الخطوة 1: الظرف المقفول 3D طافي -->
-                <img src="pic1.png" id="envStep1" class="env-img active floating-animation" alt="الظرف مقفول">
+                <!-- الصور الشفافة بالأسماء الجديدة -->
+                
+                <!-- الخطوة 1: الظرف المقفول -->
+                <img src="Pho1.png" id="envStep1" class="env-img active floating-animation" alt="الظرف مقفول">
                 
                 <!-- الخطوة 2: الظرف مفتوح والورقة طالعة منه -->
-                <img src="pic2.png" id="envStep2" class="env-img floating-animation" alt="الظرف مفتوح">
+                <img src="Pho2.png" id="envStep2" class="env-img floating-animation" alt="الظرف مفتوح">
                 
-                <!-- الخطوة 3: الرسالة بتنط لوحدها وتكبر -->
-                <img src="pic3.png" id="envStep3" class="env-img pop-out" alt="الرسالة">
+                <!-- الخطوة 3: الرسالة بتنط لوحدها وتكبر بتأثير Pop-out -->
+                <img src="Pho3.png" id="envStep3" class="env-img pop-out" alt="الرسالة">
             </div>
 
-            <!-- زرار الاحتفال -->
+            <!-- زرار الاحتفال الكبير -->
             <button class="btn-celebrate" onclick="celebrate()">احتفل بالنجاح 🎉</button>
         </div>
 
     </div>
 
-    <!-- الكانفاس الخاص بالاحتفال -->
+    <!-- الكانفاس الخاص بالألعاب النارية والقصاصات الملونة -->
     <canvas id="confetti"></canvas>
 
     <!-- مكتبة الـ Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
     <script>
-        // إنشاء خلفية النجوم
+        // إنشاء خلفية النجوم المضيئة
         const starsContainer = document.getElementById('starsContainer');
         for (let i = 0; i < 60; i++) {
             const star = document.createElement('div');
@@ -372,7 +376,7 @@
             starsContainer.appendChild(star);
         }
 
-        // حركة التنقل والدوران التفاعلي
+        // حركة التنقل والدوران التفاعلي الدائري (Loop)
         let currentStep = 1;
 
         function stepEnvelope() {
@@ -381,11 +385,12 @@
             const img3 = document.getElementById('envStep3');
 
             if (currentStep === 1) {
-                // الضغطة الأولى: فتح الظرف وبيان الورقة
+                // الضغطة الأولى: فتح الظرف وبيان طرف الورقة
                 img1.classList.remove('active');
                 img2.classList.add('active');
                 currentStep = 2;
                 
+                // احتفال خفيف عند الفتح
                 confetti({
                     particleCount: 35,
                     spread: 50,
@@ -393,11 +398,12 @@
                 });
 
             } else if (currentStep === 2) {
-                // الضغطة الثانية: تنط الورقة وتبان لوحدها واضحة
+                // الضغطة الثانية: تنط الورقة وتبان لوحدها مكبرة (تأثير Pop-out)
                 img2.classList.remove('active');
                 img3.classList.add('active');
                 currentStep = 3;
 
+                // احتفال أكبر عند ظهور الرسالة
                 setTimeout(() => {
                     confetti({
                         particleCount: 120,
@@ -407,14 +413,14 @@
                 }, 150);
 
             } else if (currentStep === 3) {
-                // الضغطة الثالثة: إرجاع الظرف لحالته الأولى المقفولة
+                // الضغطة الثالثة: إرجاع الظرف لحالته الأولى المقفولة (Loop)
                 img3.classList.remove('active');
                 img1.classList.add('active');
                 currentStep = 1;
             }
         }
 
-        // زرار الاحتفال الكبير
+        // زرار الاحتفال الكبير بالأسفل
         function celebrate() {
             confetti({
                 particleCount: 180,
