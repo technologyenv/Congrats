@@ -58,14 +58,14 @@
 
         /* 1. قسم الواجهة الرئيسية (Hero) */
         .hero {
-            /* تعديل الارتفاع ليتناسب مع الصورة الجديدة */
-            min-height: 60vh;
+            /* تقليل الارتفاع قليلاً لفسح مجال للصورة وتوسيطها */
+            min-height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding-bottom: 20px; /* مسافة بسيطة تحت النص */
+            padding-bottom: 10px; /* مسافة صغيرة جداً تحت النص */
         }
 
         .badge {
@@ -97,27 +97,34 @@
             font-weight: 400;
         }
 
-        /* تنسيق الصورة الجديدة بين تخرجت وشفرة النجاح */
+        /* تنسيق الصورة الـ 3D الثابتة والمتوسطة بدقة */
         .mid-page-image-container {
             width: 100%;
             display: flex;
-            justify-content: center; /* توسيط الصورة أفقياً */
-            align-items: center;
-            padding: 40px 0; /* مسافة فوق وتحت الصورة */
+            justify-content: center; /* توسيط أفقي */
+            align-items: center; /* توسيط رأسي */
+            /* ظبط المسافة الرأسية لتكون الصورة في منتصف الفراغ تماماً */
+            padding: 20px 0; /* مسافة متساوية فوق وتحت الحاوية */
             margin: 0 auto;
+            /* إضافة منظور 3D للحاوية */
+            perspective: 1500px;
         }
 
         .mid-page-image {
-            max-width: 80%; /* الصورة متجاوبة ولا تتعدى 80% من عرض الشاشة */
+            max-width: 75%; /* حجم مناسب للصورة */
             height: auto;
-            border-radius: 15px; /* حواف ناعمة للصورة */
-            /* ظلال 3D خفيفة عشان تتماشى مع استايل الموقع */
-            filter: drop-shadow(0px 10px 20px rgba(244, 225, 160, 0.2));
-            transition: transform 0.3s ease;
-        }
-
-        .mid-page-image:hover {
-            transform: scale(1.02); /* تأثير تكبير بسيط عند المرور بالماوس */
+            /* حواف شفافة تماماً تتبع قصة الصورة الشفافة */
+            border: none;
+            border-radius: 0;
+            
+            /* تأثير الميل المجسم الثابت (3D Rotation) */
+            transform: rotateX(10deg) rotateY(-5deg) translateZ(0);
+            
+            /* ظلال 3D احترافية مخصصة للقصاصات الشفافة تدي عمق طفو */
+            filter: drop-shadow(0px 25px 35px rgba(0, 0, 0, 0.8));
+            
+            /* منع تفاعل المؤشر مع الصورة لتبدو كجزء من الخلفية المجسمة */
+            pointer-events: none;
         }
 
         /* 2. الأقسام العامة */
@@ -290,7 +297,7 @@
             .subtitle { font-size: 1.1rem; }
             .card { width: 100%; }
             .interactive-envelope-wrapper { height: 320px; }
-            .mid-page-image { max-width: 95%; } /* الصورة أكبر قليلاً على الموبايل */
+            .mid-page-image { max-width: 90%; } /* حجم أكبر قليلاً على الموبايل لتناسب المساحة */
         }
     </style>
 </head>
@@ -308,10 +315,9 @@
         </div>
 
         <!-- ========================================= -->
-        <!-- مكان الصورة الجديدة Pho4.png المضافة من قبلكِ -->
-        <!-- الكود جاهز ومُنسق لاستقبال الصورة تلقائياً -->
+        <!-- مكان الصورة الـ 3D الثابتة المتوسطة (Pho4.png) -->
         <div class="mid-page-image-container">
-            <img src="Pho4.png" alt="صورة توضيحية من مسيرة نجاح نونو" class="mid-page-image">
+            <img src="Pho4.png" alt="مجسم توضيحي مسيرة نجاح نونو" class="mid-page-image">
         </div>
         <!-- ========================================= -->
 
