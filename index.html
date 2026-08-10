@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nono's Success Journey | Class of 2026 🎓</title>
     
-    <!-- استدعاء الفونتات الفخمة -->
+    <!-- استدعاء الفونتات -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
@@ -58,12 +58,14 @@
 
         /* 1. قسم الواجهة الرئيسية (Hero) */
         .hero {
-            min-height: 75vh;
+            /* تعديل الارتفاع ليتناسب مع الصورة الجديدة */
+            min-height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            padding-bottom: 20px; /* مسافة بسيطة تحت النص */
         }
 
         .badge {
@@ -93,6 +95,29 @@
             font-size: 1.5rem;
             color: #8892b0;
             font-weight: 400;
+        }
+
+        /* تنسيق الصورة الجديدة بين تخرجت وشفرة النجاح */
+        .mid-page-image-container {
+            width: 100%;
+            display: flex;
+            justify-content: center; /* توسيط الصورة أفقياً */
+            align-items: center;
+            padding: 40px 0; /* مسافة فوق وتحت الصورة */
+            margin: 0 auto;
+        }
+
+        .mid-page-image {
+            max-width: 80%; /* الصورة متجاوبة ولا تتعدى 80% من عرض الشاشة */
+            height: auto;
+            border-radius: 15px; /* حواف ناعمة للصورة */
+            /* ظلال 3D خفيفة عشان تتماشى مع استايل الموقع */
+            filter: drop-shadow(0px 10px 20px rgba(244, 225, 160, 0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .mid-page-image:hover {
+            transform: scale(1.02); /* تأثير تكبير بسيط عند المرور بالماوس */
         }
 
         /* 2. الأقسام العامة */
@@ -201,49 +226,31 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.4s ease;
-            /* ظلال 3D ناعمة جداً مخصصة للقصاصات الشفافة */
             filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.7));
         }
 
-        /* الحركة الهادئة التفاعلية (Floating) */
         .floating-animation {
             animation: float3D 4s ease-in-out infinite;
         }
 
         @keyframes float3D {
-            0% {
-                transform: translateY(0px) rotateX(0deg) rotateY(0deg);
-            }
-            50% {
-                transform: translateY(-12px) rotateX(4deg) rotateY(-3deg);
-                /* تأثير إضاءة ذهبية خفيفة أثناء الطفو */
-                filter: drop-shadow(0px 30px 40px rgba(244, 225, 160, 0.25));
-            }
-            100% {
-                transform: translateY(0px) rotateX(0deg) rotateY(0deg);
-            }
+            0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+            50% { transform: translateY(-12px) rotateX(4deg) rotateY(-3deg); filter: drop-shadow(0px 30px 40px rgba(244, 225, 160, 0.25)); }
+            100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
         }
 
-        /* الحالة النشطة للصورة (الظرف أو الرسالة) */
         .env-img.active {
             opacity: 1;
             pointer-events: auto;
         }
 
-        /* أنيميشن خروج الورقة وانبثاقها (Pop-out Animation) */
         .env-img.pop-out.active {
             animation: popOutLetter 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, float3D 4s ease-in-out infinite 0.7s;
         }
 
         @keyframes popOutLetter {
-            0% {
-                opacity: 0;
-                transform: scale(0.6) translateY(50px) rotateX(-20deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1.1) translateY(0px) rotateX(0deg);
-            }
+            0% { opacity: 0; transform: scale(0.6) translateY(50px) rotateX(-20deg); }
+            100% { opacity: 1; transform: scale(1.1) translateY(0px) rotateX(0deg); }
         }
 
         /* 5. زرار الاحتفال */
@@ -277,12 +284,13 @@
             z-index: 999;
         }
 
-        /* توافق الأجهزة (Responsive) */
+        /* توافق الأجهزة */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .subtitle { font-size: 1.1rem; }
             .card { width: 100%; }
             .interactive-envelope-wrapper { height: 320px; }
+            .mid-page-image { max-width: 95%; } /* الصورة أكبر قليلاً على الموبايل */
         }
     </style>
 </head>
@@ -292,12 +300,20 @@
     <div class="stars-bg" id="starsContainer"></div>
 
     <div class="container">
-        <!-- 1. Hero -->
+        <!-- 1. قسم الواجهة الرئيسية (Hero) -->
         <div class="hero">
             <div class="badge">Graduation Edition 🎓</div>
             <h1>Nono's Journey</h1>
             <p class="subtitle">تخرجت .. والرحلة بدأت للتو 🚀</p>
         </div>
+
+        <!-- ========================================= -->
+        <!-- مكان الصورة الجديدة Pho4.png المضافة من قبلكِ -->
+        <!-- الكود جاهز ومُنسق لاستقبال الصورة تلقائياً -->
+        <div class="mid-page-image-container">
+            <img src="Pho4.png" alt="صورة توضيحية من مسيرة نجاح نونو" class="mid-page-image">
+        </div>
+        <!-- ========================================= -->
 
         <!-- 2. قسم شفرة النجاح -->
         <div class="section">
@@ -329,34 +345,28 @@
             </div>
         </div>
 
-        <!-- 3. قسم الظرف والرسالة الخاصة 3D التفاعلي -->
+        <!-- 3. قسم الظرف والرسالة الخاصة 3D -->
         <div class="section">
             <h2 class="section-title">رسالة خاصة ✉️</h2>
             <p style="color: #a8b2d1; margin-bottom: 25px;">اضغط على الظرف عشان تفتحه 😉✨</p>
 
             <div class="interactive-envelope-wrapper" id="envelopeWrapper" onclick="stepEnvelope()">
                 <!-- الصور الشفافة بالأسماء الجديدة -->
-                
-                <!-- الخطوة 1: الظرف المقفول -->
                 <img src="Pho1.png" id="envStep1" class="env-img active floating-animation" alt="الظرف مقفول">
-                
-                <!-- الخطوة 2: الظرف مفتوح والورقة طالعة منه -->
                 <img src="Pho2.png" id="envStep2" class="env-img floating-animation" alt="الظرف مفتوح">
-                
-                <!-- الخطوة 3: الرسالة بتنط لوحدها وتكبر بتأثير Pop-out -->
                 <img src="Pho3.png" id="envStep3" class="env-img pop-out" alt="الرسالة">
             </div>
 
-            <!-- زرار الاحتفال الكبير -->
+            <!-- زرار الاحتفال -->
             <button class="btn-celebrate" onclick="celebrate()">احتفل بالنجاح 🎉</button>
         </div>
 
     </div>
 
-    <!-- الكانفاس الخاص بالألعاب النارية والقصاصات الملونة -->
+    <!-- الكانفاس الخاص بالاحتفال -->
     <canvas id="confetti"></canvas>
 
-    <!-- مكتبة الـ Confetti -->
+    <!-- مكتبة הConfetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
     <script>
@@ -376,7 +386,7 @@
             starsContainer.appendChild(star);
         }
 
-        // حركة التنقل والدوران التفاعلي الدائري (Loop)
+        // حركة التنقل والدوران التفاعلي
         let currentStep = 1;
 
         function stepEnvelope() {
@@ -385,12 +395,11 @@
             const img3 = document.getElementById('envStep3');
 
             if (currentStep === 1) {
-                // الضغطة الأولى: فتح الظرف وبيان طرف الورقة
+                // الضغطة الأولى: فتح الظرف
                 img1.classList.remove('active');
                 img2.classList.add('active');
                 currentStep = 2;
                 
-                // احتفال خفيف عند الفتح
                 confetti({
                     particleCount: 35,
                     spread: 50,
@@ -398,12 +407,11 @@
                 });
 
             } else if (currentStep === 2) {
-                // الضغطة الثانية: تنط الورقة وتبان لوحدها مكبرة (تأثير Pop-out)
+                // الضغطة الثانية: تنط الورقة وتبان لوحدها مكبرة
                 img2.classList.remove('active');
                 img3.classList.add('active');
                 currentStep = 3;
 
-                // احتفال أكبر عند ظهور الرسالة
                 setTimeout(() => {
                     confetti({
                         particleCount: 120,
@@ -413,14 +421,14 @@
                 }, 150);
 
             } else if (currentStep === 3) {
-                // الضغطة الثالثة: إرجاع الظرف لحالته الأولى المقفولة (Loop)
+                // الضغطة الثالثة: إرجاع الظرف مقفول
                 img3.classList.remove('active');
                 img1.classList.add('active');
                 currentStep = 1;
             }
         }
 
-        // زرار الاحتفال الكبير بالأسفل
+        // زرار الاحتفال الكبير
         function celebrate() {
             confetti({
                 particleCount: 180,
