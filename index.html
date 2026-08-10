@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nono's Success Journey | Class of 2026 🎓</title>
     
-    <!-- استدعاء الفونتات -->
+    <!-- استدعاء الفونتات الفخمة -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
@@ -58,14 +58,13 @@
 
         /* 1. قسم الواجهة الرئيسية (Hero) */
         .hero {
-            /* تقليل الارتفاع قليلاً لفسح مجال للصورة وتوسيطها */
             min-height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding-bottom: 10px; /* مسافة صغيرة جداً تحت النص */
+            padding-bottom: 10px;
         }
 
         .badge {
@@ -97,37 +96,71 @@
             font-weight: 400;
         }
 
-        /* تنسيق الصورة الـ 3D الثابتة والمتوسطة بدقة */
+        /* تنسيق الصورة الـ 3D المتحركة والشعاع الذهبي خلفها */
         .mid-page-image-container {
+            position: relative;
             width: 100%;
             display: flex;
-            justify-content: center; /* توسيط أفقي */
-            align-items: center; /* توسيط رأسي */
-            /* ظبط المسافة الرأسية لتكون الصورة في منتصف الفراغ تماماً */
-            padding: 20px 0; /* مسافة متساوية فوق وتحت الحاوية */
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0; /* مسافة متساوية فوق وتحت */
             margin: 0 auto;
-            /* إضافة منظور 3D للحاوية */
-            perspective: 1500px;
+            perspective: 1500px; /* منظور 3D */
+            z-index: 3; /* فوق خلفية النجوم وتحت البطاقات */
         }
 
-        .mid-page-image {
-            max-width: 75%; /* حجم مناسب للصورة */
-            height: auto;
-            /* حواف شفافة تماماً تتبع قصة الصورة الشفافة */
-            border: none;
-            border-radius: 0;
-            
-            /* تأثير الميل المجسم الثابت (3D Rotation) */
-            transform: rotateX(10deg) rotateY(-5deg) translateZ(0);
-            
-            /* ظلال 3D احترافية مخصصة للقصاصات الشفافة تدي عمق طفو */
-            filter: drop-shadow(0px 25px 35px rgba(0, 0, 0, 0.8));
-            
-            /* منع تفاعل المؤشر مع الصورة لتبدو كجزء من الخلفية المجسمة */
+        /* الشعاع الذهبي الوهّاج خلف الصورة */
+        .mid-page-image-container::after {
+            content: '';
+            position: absolute;
+            width: 80%; /* حجم الهالة الذهبية */
+            height: 110%;
+            /* شعاع ذهبي ناعم وشفاف */
+            background: radial-gradient(circle, rgba(244, 225, 160, 0.3) 0%, rgba(212, 175, 55, 0.1) 40%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1; /* خلف الصورة مباشرة */
+            filter: blur(20px);
+            /* يتوهج ويتحرك بتزامن مع حركة الصورة */
+            animation: goldenGlowPulse 4s ease-in-out infinite;
             pointer-events: none;
         }
 
-        /* 2. الأقسام العامة */
+        @keyframes goldenGlowPulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
+
+        .mid-page-image {
+            max-width: 75%;
+            height: auto;
+            border: none;
+            border-radius: 0;
+            z-index: 1; /* أمام الشعاع */
+            
+            /* تأثير الميل المجسم الثابت */
+            transform: rotateX(10deg) rotateY(-5deg) translateZ(0);
+            
+            /* ظلال 3D احترافية وبعيدة تتبع قصة الصورة الشفافة */
+            filter: drop-shadow(0px 25px 35px rgba(0, 0, 0, 0.8));
+            
+            /* حركتها لفوق وتحت زي الجواب */
+            animation: float3D 4s ease-in-out infinite;
+        }
+
+        /* أنيمايشن حركة الطفو المجسم الهادية */
+        @keyframes float3D {
+            0%, 100% {
+                transform: translateY(0px) rotateX(10deg) rotateY(-5deg);
+                filter: drop-shadow(0px 25px 35px rgba(0, 0, 0, 0.8));
+            }
+            50% {
+                transform: translateY(-15px) rotateX(14deg) rotateY(-8deg);
+                /* الظل يبعد ويكبر كأنها طلعت لفوق */
+                filter: drop-shadow(0px 35px 45px rgba(244, 225, 160, 0.3));
+            }
+        }
+
+        /* الأقسام العامة */
         .section {
             padding: 40px 0;
             text-align: center;
@@ -153,7 +186,7 @@
             border-radius: 2px;
         }
 
-        /* 3. كروت شفرة النجاح */
+        /* كروت شفرة النجاح */
         .cards-container {
             display: flex;
             gap: 25px;
@@ -211,7 +244,7 @@
             font-size: 0.9rem;
         }
 
-        /* 4. تصميم وحركة الظرف والرسالة الـ 3D التفاعلية */
+        /* تصميم وحركة الظرف والرسالة الـ 3D التفاعلية */
         .interactive-envelope-wrapper {
             position: relative;
             width: 100%;
@@ -236,14 +269,14 @@
             filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.7));
         }
 
-        .floating-animation {
-            animation: float3D 4s ease-in-out infinite;
+        /* حركة الطفو التفاعلية للجواب */
+        .env-floating-action {
+            animation: floatEnvelope 4s ease-in-out infinite;
         }
 
-        @keyframes float3D {
-            0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+        @keyframes floatEnvelope {
+            0%, 100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
             50% { transform: translateY(-12px) rotateX(4deg) rotateY(-3deg); filter: drop-shadow(0px 30px 40px rgba(244, 225, 160, 0.25)); }
-            100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
         }
 
         .env-img.active {
@@ -252,7 +285,7 @@
         }
 
         .env-img.pop-out.active {
-            animation: popOutLetter 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, float3D 4s ease-in-out infinite 0.7s;
+            animation: popOutLetter 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, floatEnvelope 4s ease-in-out infinite 0.7s;
         }
 
         @keyframes popOutLetter {
@@ -260,7 +293,7 @@
             100% { opacity: 1; transform: scale(1.1) translateY(0px) rotateX(0deg); }
         }
 
-        /* 5. زرار الاحتفال */
+        /* زرار الاحتفال الكبير */
         .btn-celebrate {
             background: linear-gradient(135deg, #f4e1a0 0%, #d4af37 100%);
             color: #0b0e14;
@@ -297,7 +330,8 @@
             .subtitle { font-size: 1.1rem; }
             .card { width: 100%; }
             .interactive-envelope-wrapper { height: 320px; }
-            .mid-page-image { max-width: 90%; } /* حجم أكبر قليلاً على الموبايل لتناسب المساحة */
+            .mid-page-image { max-width: 90%; }
+            .mid-page-image-container::after { width: 90%; height: 100%; blur(15px); }
         }
     </style>
 </head>
@@ -315,7 +349,7 @@
         </div>
 
         <!-- ========================================= -->
-        <!-- مكان الصورة الـ 3D الثابتة المتوسطة (Pho4.png) -->
+        <!-- مكان الصورة الـ 3D المتحركة المتوسطة (Pho4.png) والشعاع خلفها -->
         <div class="mid-page-image-container">
             <img src="Pho4.png" alt="مجسم توضيحي مسيرة نجاح نونو" class="mid-page-image">
         </div>
@@ -351,15 +385,15 @@
             </div>
         </div>
 
-        <!-- 3. قسم الظرف والرسالة الخاصة 3D -->
+        <!-- 3. قسم الظرف والرسالة الخاصة 3D التفاعلي -->
         <div class="section">
             <h2 class="section-title">رسالة خاصة ✉️</h2>
             <p style="color: #a8b2d1; margin-bottom: 25px;">اضغط على الظرف عشان تفتحه 😉✨</p>
 
             <div class="interactive-envelope-wrapper" id="envelopeWrapper" onclick="stepEnvelope()">
-                <!-- الصور الشفافة بالأسماء الجديدة -->
-                <img src="Pho1.png" id="envStep1" class="env-img active floating-animation" alt="الظرف مقفول">
-                <img src="Pho2.png" id="envStep2" class="env-img floating-animation" alt="الظرف مفتوح">
+                <!-- الصور الشفافة بالأسماء الجديدة ومحركة -->
+                <img src="Pho1.png" id="envStep1" class="env-img active env-floating-action" alt="الظرف مقفول">
+                <img src="Pho2.png" id="envStep2" class="env-img env-floating-action" alt="الظرف مفتوح">
                 <img src="Pho3.png" id="envStep3" class="env-img pop-out" alt="الرسالة">
             </div>
 
