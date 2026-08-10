@@ -204,7 +204,7 @@
 
         .btn-celebrate:hover { transform: scale(1.05); }
 
-        /* تصميم زر المفاجأة المميز والمحاط بالقلوب 🙈🩷 */
+        /* زر المفاجأة */
         .surprise-btn-wrapper {
             margin-top: 70px;
             margin-bottom: 50px;
@@ -380,7 +380,7 @@
             line-height: 1.4;
         }
 
-        /* لعبة 2: املأ شنطة بطوط بالحب (100 قلب) 🪿💼💖 */
+        /* لعبة 2: مطر القلوب 🪿💼💖 */
         .bag-game-container {
             background: rgba(255, 255, 255, 0.95);
             border: 3px solid #ff9a9e;
@@ -411,10 +411,10 @@
             animation: floatStraight 3.5s ease-in-out infinite;
         }
 
-        /* منطقة صيد القلوب */
+        /* منطقة مطر القلوب */
         .catch-area {
             position: relative;
-            height: 180px;
+            height: 260px;
             background: #fff5f7;
             border: 2px dashed #ffb6c1;
             border-radius: 20px;
@@ -423,18 +423,17 @@
             cursor: pointer;
         }
 
-        .spawn-heart {
+        .falling-heart {
             position: absolute;
-            font-size: 2rem;
+            font-size: 2.2rem;
             user-select: none;
             cursor: pointer;
-            transition: transform 0.1s ease;
-            animation: popHeart 0.3s ease-out;
+            animation: rainHeart linear forwards;
         }
 
-        @keyframes popHeart {
-            0% { transform: scale(0); }
-            100% { transform: scale(1); }
+        @keyframes rainHeart {
+            0% { top: -50px; opacity: 1; }
+            100% { top: 105%; opacity: 0.8; }
         }
 
         /* شريط التحميل Progress Bar */
@@ -476,7 +475,6 @@
             min-height: 30px;
         }
 
-        /* الجملة الكيوت الختامية */
         .batoot-footer-text {
             font-family: 'Changa', 'Cairo', sans-serif;
             font-size: 2.8rem;
@@ -509,14 +507,14 @@
 </head>
 <body>
 
-    <!-- ملف الصوت song1.wav خاص بصفحة بطوط فقط -->
+    <!-- صوت صفحة بطوط -->
     <audio id="batootSong" loop preload="auto">
         <source src="song1.wav" type="audio/wav">
     </audio>
 
     <div class="stars-bg" id="starsContainer"></div>
 
-    <!-- ================= الصفحة الأولى: الجواب وشفرة النجاح ================= -->
+    <!-- ================= الصفحة الأولى ================= -->
     <div class="page active-page" id="page1">
         <div class="hero">
             <div class="badge">Graduation Edition 🎓</div>
@@ -562,7 +560,7 @@
             <button class="btn-celebrate" onclick="celebrate()">احتفل بالنجاح 🎉</button>
         </div>
 
-        <!-- زر المفاجأة المميز المحاط بالقلوب 🙈🩷 -->
+        <!-- زر المفاجأة -->
         <div class="surprise-btn-wrapper">
             <span class="floating-heart-around fh-1">💖</span>
             <span class="floating-heart-around fh-2">✨</span>
@@ -641,27 +639,28 @@
                 </div>
             </div>
 
-            <!-- لعبة 2: املأ شنطة بطوط بالحب (100 قلب) 🪿💼💖 -->
+            <!-- لعبة 2: مطر القلوب (50 قلب) 🪿💼💖 -->
             <div class="bag-game-container">
                 <div class="duck-game-title">املأ شنطة بطوط بالحب 🪿💼💖</div>
-                <p class="duck-game-subtitle">اصطاد القلوب من الصندوق عشان تملى شنطة بطوط للآخر!</p>
+                <p class="duck-game-subtitle">اصطاد القلوب النازلة عشان تملى الشنطة بسرعة!</p>
 
                 <div class="bag-img-wrapper">
-                    <img src="Pho6.png" id="batootBagImg" class="bag-img" alt="شنطة بطوط">
+                    <!-- تعديل: Pho7 هي الفاضية البداية -->
+                    <img src="Pho7.png" id="batootBagImg" class="bag-img" alt="شنطة بطوط">
                 </div>
 
-                <!-- منطقة ظهور القلوب للصيد -->
+                <!-- منطقة مطر القلوب -->
                 <div class="catch-area" id="catchArea" onclick="catchHeart(event)">
-                    <!-- القلوب بتظهر هنا عبر الجافاسكريبت -->
+                    <!-- القلوب بتنزل هنا بالـ JS -->
                 </div>
 
                 <!-- شريط التحميل -->
                 <div class="progress-wrapper">
                     <div class="progress-bar" id="progressBar"></div>
-                    <div class="progress-text" id="progressText">0 / 100 قلب 💖</div>
+                    <div class="progress-text" id="progressText">0 / 50 قلب 💖</div>
                 </div>
 
-                <div class="bag-status-msg" id="bagStatusMsg">اصطاد القلوب واجمع 100 قلب! 🎯</div>
+                <div class="bag-status-msg" id="bagStatusMsg">اصطاد القلوب واجمع 50 قلب! 🎯</div>
             </div>
 
             <div class="batoot-footer-text">
@@ -720,20 +719,17 @@
             confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
         }
 
-        // التنقل والتحكم بالأغنية لصفحة بطوط فقط
+        // التنقل والتحكم بالأغنية
         function goToBatootPage() {
             document.getElementById('page1').classList.remove('active-page');
             document.getElementById('page2').classList.add('active-page');
             document.body.classList.add('batoot-theme');
             starsContainer.style.display = 'none';
 
-            // تشغيل أغنية بطوط
             batootAudio.play().catch(() => {
-                // في حال منع المتصفح التشغيل التلقائي، تشتغل مع أول ضغطة
                 document.body.addEventListener('click', () => batootAudio.play(), { once: true });
             });
 
-            // بدء تكرار ظهور القلوب للعبة الشنطة
             startHeartSpawner();
         }
 
@@ -743,89 +739,68 @@
             document.body.classList.remove('batoot-theme');
             starsContainer.style.display = 'block';
 
-            // إيقاف الأغنية عند العودة للصفحة الرئيسية
             batootAudio.pause();
             batootAudio.currentTime = 0;
 
             stopHeartSpawner();
         }
 
-        // تفاعل كروت بطوط السرية 🪿💌
+        // تفاعل كروت بطوط
         function revealCard(cardEl) {
             if(!cardEl.classList.contains('flipped')) {
                 cardEl.classList.add('flipped');
-                confetti({
-                    particleCount: 30,
-                    spread: 60,
-                    origin: { y: 0.7 }
-                });
+                confetti({ particleCount: 30, spread: 60, origin: { y: 0.7 } });
             }
         }
 
-        // ================= لعبة شنطة بطوط بالحب 🪿💼 =================
+        // ================= لعبة مطر القلوب 💖 =================
         let heartScore = 0;
-        const targetScore = 100;
+        const targetScore = 50; // تم التقليل لـ 50
         let spawnerInterval = null;
         const catchArea = document.getElementById('catchArea');
 
         function startHeartSpawner() {
             if (spawnerInterval) clearInterval(spawnerInterval);
-            spawnSingleHeart();
-            spawnerInterval = setInterval(spawnSingleHeart, 900);
+            spawnerInterval = setInterval(spawnFallingHeart, 500); // سرعة نزول المطر
         }
 
         function stopHeartSpawner() {
             if (spawnerInterval) clearInterval(spawnerInterval);
         }
 
-        function spawnSingleHeart() {
+        function spawnFallingHeart() {
             if (heartScore >= targetScore) return;
 
             const heart = document.createElement('div');
-            heart.classList.add('spawn-heart');
-            const emojis = ['💖', '💗', '🌸', '✨', '💕'];
-            heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            heart.classList.add('falling-heart');
+            
+            // مطر القلوب بالكامل
+            const hearts = ['💖', '💕', '💗', '💓', '❤️'];
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
 
-            const maxX = catchArea.clientWidth - 50;
-            const maxY = catchArea.clientHeight - 50;
-
-            heart.style.left = Math.max(10, Math.floor(Math.random() * maxX)) + 'px';
-            heart.style.top = Math.max(10, Math.floor(Math.random() * maxY)) + 'px';
+            // تحديد موقع وسرعة عشوائية لكل قلب
+            heart.style.left = Math.random() * 88 + '%';
+            heart.style.animationDuration = (Math.random() * 2 + 1.8) + 's';
 
             catchArea.appendChild(heart);
 
-            // اختفاء القلب تلقائياً لو متداسش عليه
+            // حذف القلب بعد انتهاء أنيميشن الهبوط
             setTimeout(() => {
                 if (heart.parentNode === catchArea) {
                     heart.remove();
                 }
-            }, 2200);
+            }, 3800);
         }
 
         function catchHeart(e) {
-            if (e.target.classList.contains('spawn-heart') && heartScore < targetScore) {
-                heartScore += 1; // زيادة السكور مع كل ضغطة
+            if (e.target.classList.contains('falling-heart') && heartScore < targetScore) {
+                heartScore += 1;
                 e.target.remove();
 
-                // تحديث شريط التقدم
                 const percent = Math.min(100, Math.floor((heartScore / targetScore) * 100));
                 document.getElementById('progressBar').style.width = percent + '%';
                 document.getElementById('progressText').innerText = heartScore + ' / ' + targetScore + ' قلب 💖';
 
-                // تأثير طيران القلب بعد الصيد
-                const floatEffect = document.createElement('div');
-                floatEffect.innerText = '+1 💖';
-                floatEffect.style.position = 'absolute';
-                floatEffect.style.left = e.offsetX + 'px';
-                floatEffect.style.top = e.offsetY + 'px';
-                floatEffect.style.color = '#ff4757';
-                floatEffect.style.fontWeight = 'bold';
-                floatEffect.style.pointerEvents = 'none';
-                floatEffect.style.animation = 'floatHeart 0.8s ease-out forwards';
-                catchArea.appendChild(floatEffect);
-                setTimeout(() => floatEffect.remove(), 800);
-
-                // التحقق من اكتمال الـ 100 قلب
                 if (heartScore >= targetScore) {
                     completeBagGame();
                 }
@@ -834,13 +809,12 @@
 
         function completeBagGame() {
             stopHeartSpawner();
-            catchArea.innerHTML = '<div style="margin-top:70px; font-weight:bold; color:#ff4757; font-size:1.2rem;">اكتملت الشنطة بالحب بنجاح! 🎉🪿</div>';
+            catchArea.innerHTML = '<div style="margin-top:100px; font-weight:bold; color:#ff4757; font-size:1.3rem;">اكتملت الشنطة بالحب بنجاح! 🎉🪿</div>';
             
-            // تغيير صورة الشنطة إلى الشنطة المليانة Pho7.png
-            document.getElementById('batootBagImg').src = 'Pho7.png';
+            // تعديل: تتحول لـ Pho6 (الشنطة المليانة)
+            document.getElementById('batootBagImg').src = 'Pho6.png';
             document.getElementById('bagStatusMsg').innerText = 'مبروك! شنطة بطوط اتملت بحب نونو بالكامل! 🥳💖';
 
-            // احتفال بالألعاب النارية
             confetti({
                 particleCount: 200,
                 spread: 100,
@@ -848,12 +822,5 @@
             });
         }
     </script>
-
-    <style>
-        @keyframes floatHeart {
-            0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-35px) scale(1.3); }
-        }
-    </style>
 </body>
 </html>
