@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nono's Success Journey | Class of 2026 🎓</title>
+    <title>Nono's Journey & Surprise 🎓🪿</title>
     
-    <!-- استدعاء الفونتات الفخمة -->
+    <!-- استدعاء الفونتات الفخمة والكيوت -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Changa:wght@700;800&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -23,6 +23,7 @@
             font-family: 'Cairo', sans-serif;
             overflow-x: hidden;
             position: relative;
+            transition: background-color 0.5s ease;
         }
 
         /* خلفية النجوم المتلألئة */
@@ -48,23 +49,34 @@
             100% { opacity: 1; transform: scale(1.3); box-shadow: 0 0 10px #f4e1a0; }
         }
 
-        .container {
+        /* حاويات الصفحات */
+        .page {
+            display: none;
             position: relative;
             z-index: 2;
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
+            animation: fadeIn 0.6s ease-in-out forwards;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* 1. قسم الواجهة الرئيسية (Hero) */
         .hero {
-            min-height: 50vh;
+            min-height: 40vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding-bottom: 10px;
         }
 
         .badge {
@@ -75,184 +87,116 @@
             font-size: 0.9rem;
             letter-spacing: 2px;
             margin-bottom: 20px;
-            text-transform: uppercase;
             color: #f4e1a0;
         }
 
         h1 {
-            font-family: 'Poppins', 'Cairo', sans-serif;
-            font-size: 3.8rem;
-            font-weight: 900;
+            font-family: 'Changa', 'Cairo', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
             margin-bottom: 10px;
             background: linear-gradient(135deg, #ffffff 0%, #f4e1a0 50%, #d4af37 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #8892b0;
-            font-weight: 400;
         }
 
-        /* تنسيق الصورة الـ 3D المتحركة والشعاع الذهبي خلفها */
+        /* الصورة المتوسطة - حركة رأسيّة مستقيمة 100% بدون ميل */
         .mid-page-image-container {
             position: relative;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px 0; /* مسافة متساوية فوق وتحت */
+            padding: 50px 0;
             margin: 0 auto;
-            perspective: 1500px; /* منظور 3D */
-            z-index: 3; /* فوق خلفية النجوم وتحت البطاقات */
+            z-index: 3;
         }
 
-        /* الشعاع الذهبي الوهّاج خلف الصورة */
         .mid-page-image-container::after {
             content: '';
             position: absolute;
-            width: 80%; /* حجم الهالة الذهبية */
-            height: 110%;
-            /* شعاع ذهبي ناعم وشفاف */
-            background: radial-gradient(circle, rgba(244, 225, 160, 0.3) 0%, rgba(212, 175, 55, 0.1) 40%, transparent 70%);
+            width: 75%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(244, 225, 160, 0.35) 0%, rgba(212, 175, 55, 0.15) 50%, transparent 75%);
             border-radius: 50%;
-            z-index: -1; /* خلف الصورة مباشرة */
-            filter: blur(20px);
-            /* يتوهج ويتحرك بتزامن مع حركة الصورة */
-            animation: goldenGlowPulse 4s ease-in-out infinite;
-            pointer-events: none;
+            z-index: -1;
+            filter: blur(25px);
+            animation: goldenGlowPulse 3.5s ease-in-out infinite;
         }
 
         @keyframes goldenGlowPulse {
-            0%, 100% { opacity: 0.6; transform: scale(1); }
-            50% { opacity: 0.9; transform: scale(1.05); }
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(1.08); }
         }
 
         .mid-page-image {
-            max-width: 75%;
+            max-width: 70%;
             height: auto;
-            border: none;
-            border-radius: 0;
-            z-index: 1; /* أمام الشعاع */
-            
-            /* تأثير الميل المجسم الثابت */
-            transform: rotateX(10deg) rotateY(-5deg) translateZ(0);
-            
-            /* ظلال 3D احترافية وبعيدة تتبع قصة الصورة الشفافة */
-            filter: drop-shadow(0px 25px 35px rgba(0, 0, 0, 0.8));
-            
-            /* حركتها لفوق وتحت زي الجواب */
-            animation: float3D 4s ease-in-out infinite;
+            z-index: 1;
+            filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.7));
+            /* حركة رأسيّة متوازنة تماماً */
+            animation: floatStraight 3.5s ease-in-out infinite;
         }
 
-        /* أنيمايشن حركة الطفو المجسم الهادية */
-        @keyframes float3D {
+        @keyframes floatStraight {
             0%, 100% {
-                transform: translateY(0px) rotateX(10deg) rotateY(-5deg);
-                filter: drop-shadow(0px 25px 35px rgba(0, 0, 0, 0.8));
+                transform: translateY(0px);
+                filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.7));
             }
             50% {
-                transform: translateY(-15px) rotateX(14deg) rotateY(-8deg);
-                /* الظل يبعد ويكبر كأنها طلعت لفوق */
-                filter: drop-shadow(0px 35px 45px rgba(244, 225, 160, 0.3));
+                transform: translateY(-22px);
+                filter: drop-shadow(0px 35px 40px rgba(244, 225, 160, 0.25));
             }
         }
 
-        /* الأقسام العامة */
+        /* كروت شفرة النجاح */
         .section {
-            padding: 40px 0;
+            padding: 30px 0;
             text-align: center;
         }
 
         .section-title {
             font-size: 2.2rem;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             color: #ffffff;
             position: relative;
             display: inline-block;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: #f4e1a0;
-            border-radius: 2px;
-        }
-
-        /* كروت شفرة النجاح */
         .cards-container {
             display: flex;
-            gap: 25px;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 20px;
         }
 
         .card {
             background: rgba(23, 28, 40, 0.7);
             backdrop-filter: blur(10px);
-            padding: 30px 20px;
-            border-radius: 24px;
+            padding: 25px 20px;
+            border-radius: 20px;
             width: 280px;
             border: 1px solid rgba(244, 225, 160, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            transition: all 0.4s ease;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: #f4e1a0;
-            box-shadow: 0 20px 40px rgba(244, 225, 160, 0.15);
-        }
+        .card .icon { font-size: 3rem; margin-bottom: 10px; }
+        .card h3 { color: #fff; margin-bottom: 10px; }
+        .card p { color: #a8b2d1; font-size: 0.95rem; line-height: 1.6; }
 
-        .card .icon { font-size: 3.2rem; margin-bottom: 15px; }
-        .card h3 { font-size: 1.3rem; color: #ffffff; margin-bottom: 12px; }
-        .card p { color: #a8b2d1; font-size: 0.95rem; line-height: 1.7; }
-
-        .progress-container {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin-top: 15px;
-            height: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(244, 225, 160, 0.3);
-        }
-
-        .progress-bar {
-            width: 40%;
-            height: 100%;
-            background: linear-gradient(90deg, #f4e1a0, #d4af37);
-            border-radius: 10px;
-        }
-
-        .percent-label {
-            font-weight: bold;
-            color: #f4e1a0;
-            margin-top: 8px;
-            font-size: 0.9rem;
-        }
-
-        /* تصميم وحركة الظرف والرسالة الـ 3D التفاعلية */
+        /* الجواب والرسالة */
         .interactive-envelope-wrapper {
             position: relative;
             width: 100%;
-            max-width: 500px;
-            height: 420px;
+            max-width: 480px;
+            height: 380px;
             margin: 0 auto;
             cursor: pointer;
-            perspective: 1200px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -266,53 +210,153 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.4s ease;
-            filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.7));
+            filter: drop-shadow(0px 15px 25px rgba(0, 0, 0, 0.6));
+            animation: floatStraight 3.5s ease-in-out infinite;
         }
 
-        /* حركة الطفو التفاعلية للجواب */
-        .env-floating-action {
-            animation: floatEnvelope 4s ease-in-out infinite;
-        }
+        .env-img.active { opacity: 1; pointer-events: auto; }
 
-        @keyframes floatEnvelope {
-            0%, 100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
-            50% { transform: translateY(-12px) rotateX(4deg) rotateY(-3deg); filter: drop-shadow(0px 30px 40px rgba(244, 225, 160, 0.25)); }
-        }
-
-        .env-img.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .env-img.pop-out.active {
-            animation: popOutLetter 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, floatEnvelope 4s ease-in-out infinite 0.7s;
-        }
-
-        @keyframes popOutLetter {
-            0% { opacity: 0; transform: scale(0.6) translateY(50px) rotateX(-20deg); }
-            100% { opacity: 1; transform: scale(1.1) translateY(0px) rotateX(0deg); }
-        }
-
-        /* زرار الاحتفال الكبير */
+        /* الأزرار */
         .btn-celebrate {
             background: linear-gradient(135deg, #f4e1a0 0%, #d4af37 100%);
             color: #0b0e14;
             border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(244, 225, 160, 0.3);
+            margin-top: 25px;
+            transition: 0.3s;
+        }
+
+        .btn-celebrate:hover { transform: scale(1.05); }
+
+        /* زر المفاجأة */
+        .surprise-btn-wrapper {
+            margin-top: 60px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .btn-surprise {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+            color: #5a2a3a;
+            border: 2px solid #fff;
             padding: 16px 45px;
             font-size: 1.3rem;
-            font-family: 'Cairo', sans-serif;
             font-weight: 900;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 25px rgba(244, 225, 160, 0.3);
+            box-shadow: 0 10px 25px rgba(255, 154, 158, 0.4);
             transition: all 0.3s ease;
-            margin-top: 40px;
+            animation: pulseGlow 2s infinite;
         }
 
-        .btn-celebrate:hover {
-            transform: scale(1.08);
-            box-shadow: 0 15px 35px rgba(244, 225, 160, 0.6);
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 25px rgba(255, 154, 158, 0.4); }
+            50% { transform: scale(1.06); box-shadow: 0 15px 35px rgba(255, 154, 158, 0.7); }
         }
+
+        /* ================= PAGE 2: BATOOT PAGE ================= */
+        body.batoot-theme {
+            background-color: #fff0f5;
+            color: #4a2c35;
+        }
+
+        .batoot-container {
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        .btn-back {
+            background: #ffffff;
+            color: #ff6b81;
+            border: 2px solid #ff6b81;
+            padding: 8px 22px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-back:hover {
+            background: #ff6b81;
+            color: #fff;
+        }
+
+        .batoot-hero-img {
+            max-width: 260px;
+            height: auto;
+            border-radius: 20px;
+            margin: 15px auto;
+            filter: drop-shadow(0 10px 20px rgba(255, 107, 129, 0.2));
+            animation: floatStraight 3s ease-in-out infinite;
+        }
+
+        /* لعبة بطوط الكيوت */
+        .game-box {
+            background: rgba(255, 255, 255, 0.85);
+            border: 3px dashed #ffb6c1;
+            border-radius: 25px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 25px auto;
+            box-shadow: 0 10px 25px rgba(255, 182, 193, 0.3);
+            position: relative;
+        }
+
+        .game-title {
+            color: #ff4757;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            font-family: 'Changa', sans-serif;
+        }
+
+        .game-area {
+            height: 220px;
+            position: relative;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 15px;
+            border: 1px solid #ffe4e1;
+            cursor: pointer;
+        }
+
+        .target-duck {
+            font-size: 3.2rem;
+            position: absolute;
+            user-select: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .score-board {
+            font-size: 1.1rem;
+            color: #ff6b81;
+            font-weight: bold;
+        }
+
+        /* الجملة النصية المطابقة للفونت والألوان */
+        .batoot-footer-text {
+            font-family: 'Changa', 'Cairo', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .text-pink { color: #ff4757; }
+        .text-brown { color: #573828; }
 
         canvas#confetti {
             position: fixed;
@@ -324,158 +368,220 @@
             z-index: 999;
         }
 
-        /* توافق الأجهزة */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            .subtitle { font-size: 1.1rem; }
-            .card { width: 100%; }
-            .interactive-envelope-wrapper { height: 320px; }
-            .mid-page-image { max-width: 90%; }
-            .mid-page-image-container::after { width: 90%; height: 100%; blur(15px); }
+            .mid-page-image { max-width: 85%; }
+            .batoot-footer-text { font-size: 2.1rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ملف الصوت بتمديد wav -->
+    <audio id="bgSong" loop preload="auto">
+        <source src="song1.wav" type="audio/wav">
+    </audio>
+
     <!-- خلفية النجوم -->
     <div class="stars-bg" id="starsContainer"></div>
 
-    <div class="container">
-        <!-- 1. قسم الواجهة الرئيسية (Hero) -->
+    <!-- ================= الصفحة الأولى: الجواب وشفرة النجاح ================= -->
+    <div class="page active-page" id="page1">
         <div class="hero">
             <div class="badge">Graduation Edition 🎓</div>
             <h1>Nono's Journey</h1>
             <p class="subtitle">تخرجت .. والرحلة بدأت للتو 🚀</p>
         </div>
 
-        <!-- ========================================= -->
-        <!-- مكان الصورة الـ 3D المتحركة المتوسطة (Pho4.png) والشعاع خلفها -->
+        <!-- الصورة المتوسطة الـ 3D بالحركة المستقيمة -->
         <div class="mid-page-image-container">
-            <img src="Pho4.png" alt="مجسم توضيحي مسيرة نجاح نونو" class="mid-page-image">
+            <img src="Pho4.png" alt="مسيرة نجاح نونو" class="mid-page-image">
         </div>
-        <!-- ========================================= -->
 
-        <!-- 2. قسم شفرة النجاح -->
+        <!-- قسم شفرة النجاح -->
         <div class="section">
             <h2 class="section-title">شفرة النجاح ⚙️</h2>
             <div class="cards-container">
-                
                 <div class="card">
                     <div class="icon">🤖</div>
                     <h3>منقذ الأزمات (AI)</h3>
-                    <p>الداعم الرسمي والسند الموثوق في كل التاسكات، وأهم حاجة طبعاً إنه شال المادة والأزمة في الامتحانات 😂😉!</p>
+                    <p>الداعم الرسمي والسند الموثوق في كل التاسكات والامتحانات! 😂😉</p>
                 </div>
-
                 <div class="card">
                     <div class="icon">🦾</div>
                     <h3>مجهود شخصي 😂</h3>
-                    <p>النسبة المتبقية من العرق والكفاح البشري العادي، برضو مجهود يُحسب ليك يا بطل!</p>
-                    <div class="progress-container">
-                        <div class="progress-bar"></div>
-                    </div>
-                    <div class="percent-label">نسبة المجهود: 40% 🤣</div>
+                    <p>النسبة المتبقية من العرق والكفاح البشري العادي، مجهود يُحسب ليك يا بطل!</p>
                 </div>
-
                 <div class="card">
                     <div class="icon">🧳</div>
                     <h3>تعب وسفر وشغل</h3>
-                    <p>السفر رايح جاي والتوفيق الصعب جداً بين الشغل والامتحانات.. التعب الحقيقي اللي يستاهل كل تقدير.</p>
+                    <p>التوفيق الصعب بين الشغل والتعب.. التعب الحقيقي اللي يستاهل كل تقدير.</p>
                 </div>
-
             </div>
         </div>
 
-        <!-- 3. قسم الظرف والرسالة الخاصة 3D التفاعلي -->
+        <!-- قسم الرسالة -->
         <div class="section">
             <h2 class="section-title">رسالة خاصة ✉️</h2>
-            <p style="color: #a8b2d1; margin-bottom: 25px;">اضغط على الظرف عشان تفتحه 😉✨</p>
+            <p style="color: #a8b2d1; margin-bottom: 20px;">اضغط على الظرف عشان تفتحه 😉✨</p>
 
-            <div class="interactive-envelope-wrapper" id="envelopeWrapper" onclick="stepEnvelope()">
-                <!-- الصور الشفافة بالأسماء الجديدة ومحركة -->
-                <img src="Pho1.png" id="envStep1" class="env-img active env-floating-action" alt="الظرف مقفول">
-                <img src="Pho2.png" id="envStep2" class="env-img env-floating-action" alt="الظرف مفتوح">
-                <img src="Pho3.png" id="envStep3" class="env-img pop-out" alt="الرسالة">
+            <div class="interactive-envelope-wrapper" onclick="stepEnvelope()">
+                <img src="Pho1.png" id="envStep1" class="env-img active" alt="الظرف">
+                <img src="Pho2.png" id="envStep2" class="env-img" alt="فتح الظرف">
+                <img src="Pho3.png" id="envStep3" class="env-img" alt="الرسالة">
             </div>
 
-            <!-- زرار الاحتفال -->
             <button class="btn-celebrate" onclick="celebrate()">احتفل بالنجاح 🎉</button>
         </div>
 
+        <!-- زر المفاجأة الجديد 🙈🩷 -->
+        <div class="surprise-btn-wrapper">
+            <button class="btn-surprise" onclick="goToBatootPage()">زر المفاجأة 🙈🩷</button>
+        </div>
     </div>
 
-    <!-- الكانفاس الخاص بالاحتفال -->
+    <!-- ================= الصفحة الثانية: عالم بطوط الكيوت 🪿 pink ================= -->
+    <div class="page" id="page2">
+        <div class="batoot-container">
+            <button class="btn-back" onclick="goToMainPage()">➔ العودة لصفحة التخرج</button>
+            
+            <br>
+            <!-- صورة بطوط Pho5.png -->
+            <img src="Pho5.png" alt="بطوط الكيوت" class="batoot-hero-img">
+
+            <!-- لعبة بطوط الكيوت -->
+            <div class="game-box">
+                <div class="game-title">لعبة: إطعام بطوط بالحب 🪿💖</div>
+                <p style="font-size: 0.85rem; color: #885060;">صاد البطة واجمع لها أكبر عدد من القلوب!</p>
+                
+                <div class="game-area" id="gameArea" onclick="catchDuck(event)">
+                    <div class="target-duck" id="duckTarget" style="top: 30%; left: 40%;">🪿</div>
+                </div>
+
+                <div style="margin-top: 10px;" class="score-board">
+                    عدد القلوب المجمعة: <span id="scoreVal">0</span> 💖
+                </div>
+            </div>
+
+            <!-- الجملة النصية المطابقة للفونت والألوان -->
+            <div class="batoot-footer-text">
+                <span class="text-pink">بطوط</span> <br>
+                <span class="text-brown">في الخدمة</span> <br>
+                <span class="text-pink">دائماً 💖</span>
+            </div>
+        </div>
+    </div>
+
     <canvas id="confetti"></canvas>
 
-    <!-- مكتبة הConfetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
     <script>
-        // إنشاء خلفية النجوم المضيئة
+        // التشغيل التلقائي للصوت song1.wav عند أول تفاعل للزائر
+        const audio = document.getElementById('bgSong');
+        function playAudio() {
+            audio.play().catch(() => {});
+        }
+        document.body.addEventListener('click', playAudio, { once: true });
+
+        // خلفية النجوم
         const starsContainer = document.getElementById('starsContainer');
-        for (let i = 0; i < 60; i++) {
+        for (let i = 0; i < 50; i++) {
             const star = document.createElement('div');
             star.classList.add('star');
             star.style.left = Math.random() * 100 + 'vw';
             star.style.top = Math.random() * 100 + 'vh';
-            
             const size = Math.random() * 3 + 1;
             star.style.width = size + 'px';
             star.style.height = size + 'px';
-            
             star.style.setProperty('--duration', (Math.random() * 2 + 1) + 's');
             starsContainer.appendChild(star);
         }
 
-        // حركة التنقل والدوران التفاعلي
+        // حركة الجواب
         let currentStep = 1;
-
         function stepEnvelope() {
             const img1 = document.getElementById('envStep1');
             const img2 = document.getElementById('envStep2');
             const img3 = document.getElementById('envStep3');
 
             if (currentStep === 1) {
-                // الضغطة الأولى: فتح الظرف
                 img1.classList.remove('active');
                 img2.classList.add('active');
                 currentStep = 2;
-                
-                confetti({
-                    particleCount: 35,
-                    spread: 50,
-                    origin: { y: 0.6 }
-                });
-
             } else if (currentStep === 2) {
-                // الضغطة الثانية: تنط الورقة وتبان لوحدها مكبرة
                 img2.classList.remove('active');
                 img3.classList.add('active');
                 currentStep = 3;
-
-                setTimeout(() => {
-                    confetti({
-                        particleCount: 120,
-                        spread: 85,
-                        origin: { y: 0.6 }
-                    });
-                }, 150);
-
-            } else if (currentStep === 3) {
-                // الضغطة الثالثة: إرجاع الظرف مقفول
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            } else {
                 img3.classList.remove('active');
                 img1.classList.add('active');
                 currentStep = 1;
             }
         }
 
-        // زرار الاحتفال الكبير
         function celebrate() {
-            confetti({
-                particleCount: 180,
-                spread: 100,
-                origin: { y: 0.6 }
-            });
+            confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
+        }
+
+        // التنقل بين الصفحات
+        function goToBatootPage() {
+            document.getElementById('page1').classList.remove('active-page');
+            document.getElementById('page2').classList.add('active-page');
+            document.body.classList.add('batoot-theme');
+            starsContainer.style.display = 'none';
+            moveDuck();
+        }
+
+        function goToMainPage() {
+            document.getElementById('page2').classList.remove('active-page');
+            document.getElementById('page1').classList.add('active-page');
+            document.body.classList.remove('batoot-theme');
+            starsContainer.style.display = 'block';
+        }
+
+        // لعبة بطوط الكيوت 🪿
+        let score = 0;
+        const duck = document.getElementById('duckTarget');
+        const gameArea = document.getElementById('gameArea');
+
+        function moveDuck() {
+            const maxX = gameArea.clientWidth - 60;
+            const maxY = gameArea.clientHeight - 60;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            duck.style.left = randomX + 'px';
+            duck.style.top = randomY + 'px';
+        }
+
+        function catchDuck(e) {
+            score++;
+            document.getElementById('scoreVal').innerText = score;
+            
+            // إنشاء قلب يتطاير
+            const heart = document.createElement('div');
+            heart.innerText = '💖';
+            heart.style.position = 'absolute';
+            heart.style.left = e.offsetX + 'px';
+            heart.style.top = e.offsetY + 'px';
+            heart.style.pointerEvents = 'none';
+            heart.style.fontSize = '1.5rem';
+            heart.style.animation = 'floatHeart 0.8s ease-out forwards';
+            gameArea.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 800);
+            moveDuck();
         }
     </script>
+
+    <style>
+        @keyframes floatHeart {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-40px) scale(1.4); }
+        }
+    </style>
 </body>
 </html>
